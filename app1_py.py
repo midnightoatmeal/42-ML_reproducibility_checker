@@ -63,14 +63,14 @@ if uploaded_paper:
             st.write("🔑 **Key Terms from Paper:**", ", ".join(pdf_keywords))
 
 if uploaded_code:
-    st.success(f"✅ {len(uploaded_code)} Python files uploaded.")
+    st.success(f"{len(uploaded_code)} Python files uploaded.")
 
 st.write("🚀 Click 'Analyze' to check and validate reproducibility.")
 
 # Analysis Section
 if st.button("Analyze"):
     if not uploaded_paper or not uploaded_code:
-        st.warning("⚠️ Please upload both a research paper and Python code.")
+        st.warning("Please upload both a research paper and Python code.")
     else:
         st.subheader("🔬 Analysis Results")
         
@@ -104,11 +104,11 @@ if st.button("Analyze"):
         # Reproducibility Checklist
         st.subheader("🧪 Reproducibility Checklist")
         if seeds_used:
-            st.write("✅ Random seed settings detected (e.g., `np.random.seed`, `torch.manual_seed`).")
+            st.write("Random seed settings detected (e.g., `np.random.seed`, `torch.manual_seed`).")
         else:
-            st.write("❌ No random seed settings found. Consider adding them for reproducibility.")
+            st.write("No random seed settings found. Consider adding them for reproducibility.")
         
-        st.success("✅ Analysis Complete! More features coming soon.")
+        st.success("Analysis Complete! More features coming soon.")
 
 # Instructions and Tips
 with st.expander("ℹ️ How to Use"):
