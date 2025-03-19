@@ -1,4 +1,4 @@
-# 42: AI-Powered Reproducibility Checker
+# 42: ML Reproducibility Checker
 A tool to analyze research papers (PDFs) and Python code for reproducibility markers.
 
 ## Features
