@@ -15,7 +15,7 @@ A tool to analyze research papers (PDFs) and Python code for reproducibility mar
 Upload a PDF and `.py` files, then click "Analyze"!
 
 ## Live Demo
-[Coming soon after deployment!]
+Try it live: https://whatis42.streamlit.app
 
 ## License
 MIT
