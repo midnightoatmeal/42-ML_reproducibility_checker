@@ -3,7 +3,7 @@ import fitz  # PyMuPDF for PDF processing
 import ast
 import re
 
-st.set_page_config(page_title="42: AI-Powered Reproducibility Checker", layout="wide")
+st.set_page_config(page_title="42: Reproducibility Checker", layout="wide")
 
 # Helper Functions
 def analyze_python_code(file):
