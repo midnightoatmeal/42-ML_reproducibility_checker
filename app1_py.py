@@ -45,7 +45,7 @@ def extract_pdf_text(file, pages=2):
         return "Unable to extract text.", set()
 
 # Main App
-st.title("🔍 42: AI-Powered Reproducibility Checker")
+st.title("🔍 42: ML Reproducibility Checker")
 st.write("Upload a research paper (PDF) and its code (Python files) to analyze and validate reproducibility.")
 
 # File Upload Section
