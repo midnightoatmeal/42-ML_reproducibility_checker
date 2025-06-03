@@ -7,13 +7,20 @@
 - **Cross-Validation**: Compare extracted paper keywords with function names to find missing alignment.
 - **Reproducibility Report**: Generate and download a plaintext audit of code-paper consistency.
 
-git clone https://github.com/yourname/42.git
-cd 42
+git clone https://github.com/midnightoatmeal/42-ML_reproducibility_checker
 pip install -r requirements.txt
 streamlit run app1.py
 
-## Usage
-Upload a PDF and `.py` files, then click "Analyze"!
+# Sample Use Case
+
+You're reviewing a NeurIPS or ICLR submission. With `42`, you can:
+
+1. Upload the PDF paper and its codebase.
+2. Instantly check if:
+   - Random seeds are set (for reproducibility).
+   - Key terms in the paper appear in the code.
+   - All functions and imports are clearly defined.
+3. Download an audit report summarizing the alignment.
 
 ## Live Demo
 Try it live: https://whatis42.streamlit.app
