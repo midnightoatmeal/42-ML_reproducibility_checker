@@ -7,10 +7,10 @@
 - **Cross-Validation**: Compare extracted paper keywords with function names to find missing alignment.
 - **Reproducibility Report**: Generate and download a plaintext audit of code-paper consistency.
 
-## Installation
-1. Clone the repo: `git clone https://github.com/midnightoatmeal/42-ML_reproducibility.git`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Run locally: `streamlit run app1.py`
+git clone https://github.com/yourname/42.git
+cd 42
+pip install -r requirements.txt
+streamlit run app1.py
 
 ## Usage
 Upload a PDF and `.py` files, then click "Analyze"!
