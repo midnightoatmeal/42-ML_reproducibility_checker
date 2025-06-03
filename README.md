@@ -1,5 +1,5 @@
 # 42: ML Reproducibility Checker
-A tool to analyze research papers (PDFs) and Python code for reproducibility markers.
+A tool to analyze research papers (PDFs) and Python code for reproducibility markers of Machine Learning papers.
 
 ## Features
 - Extracts functions and imports from Python code.
