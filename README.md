@@ -1,10 +1,11 @@
 # 42: ML Reproducibility Checker
-A tool to analyze research papers (PDFs) and Python code for reproducibility markers of Machine Learning papers.
+**42** is an AI-assisted reproducibility audit tool designed to assess the alignment between a research paper and its corresponding Python code. Upload your PDF and code files, and get a quick reproducibility check with a downloadable audit report.
 
-## Features
-- Extracts functions and imports from Python code.
-- Previews PDF content (first 2 pages).
-- Checks for random seeds (e.g., `np.random.seed`, `torch.manual_seed`).
+- **PDF + Code Analysis**: Upload a research paper and one or more `.py` files.
+- **Keyword Extraction**: Extract key ML terms from the paper (e.g., attention, optimizer, token).
+- **Code Parsing**: Detect Python functions, imports, and random seed usage using AST and regex.
+- **Cross-Validation**: Compare extracted paper keywords with function names to find missing alignment.
+- **Reproducibility Report**: Generate and download a plaintext audit of code-paper consistency.
 
 ## Installation
 1. Clone the repo: `git clone https://github.com/midnightoatmeal/42-ML_reproducibility.git`
