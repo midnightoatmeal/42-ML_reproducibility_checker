@@ -1,5 +1,3 @@
-# 42: ML Reproducibility Checker (Service MVP Version)
-
 import streamlit as st
 import fitz  # PyMuPDF for PDF processing
 import ast
@@ -9,10 +7,10 @@ import datetime
 st.set_page_config(page_title="42: Reproducibility Checker", layout="wide")
 
 # --- Helper Functions ---
-def analyze_python_code(file):
+def analyze_python_code(file, paper_keywords):
     try:
-        code_content = file.read().decode("utf-8")
-        tree = ast.parse(code_content)
+        code_str = file.read().decode("utf-8")
+        tree = ast.parse(code_str)
 
         functions = [node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
 
@@ -23,13 +21,26 @@ def analyze_python_code(file):
             elif isinstance(node, ast.ImportFrom):
                 imports.append(node.module)
 
-        seed_patterns = [r'np\.random\.seed', r'torch\.manual_seed', r'random\.seed']
-        seeds_used = any(re.search(pattern, code_content) for pattern in seed_patterns)
+        seed_patterns = [
+            r'np\.random\.seed',
+            r'torch\.manual_seed',
+            r'random\.seed',
+            r'torch\.cuda\.manual_seed_all',
+            r'os\.environ\[\s*[\'"]PYTHONHASHSEED[\'"]\s*\]',
+            r'torch\.backends\.cudnn\.deterministic',
+        ]
+        seeds_used = any(re.search(pattern, code_str) for pattern in seed_patterns)
 
-        return functions, imports, seeds_used
+        # Enhanced keyword match across full code
+        matched_keywords = set()
+        for kw in paper_keywords:
+            if re.search(rf'\b{re.escape(kw)}\b', code_str, re.IGNORECASE):
+                matched_keywords.add(kw)
+
+        return functions, imports, seeds_used, matched_keywords
     except Exception as e:
         st.error(f"Error analyzing {file.name}: {str(e)}")
-        return [], [], False
+        return [], [], False, set()
 
 def extract_pdf_text(file, pages=2):
     try:
@@ -41,8 +52,9 @@ def extract_pdf_text(file, pages=2):
         st.error(f"Error processing PDF: {str(e)}")
         return "Unable to extract text.", set()
 
-def generate_report(functions, imports, seeds_used, pdf_keywords, missing_keywords):
+def generate_report(functions, imports, seeds_used, pdf_keywords, matched_keywords):
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    missing_keywords = pdf_keywords - matched_keywords
     report = f"""
 42: Reproducibility Audit Report
 Generated: {now}
@@ -58,7 +70,10 @@ Random Seed Used: {'Yes' if seeds_used else 'No'}
 Paper Keywords:
 {', '.join(pdf_keywords) if pdf_keywords else 'None'}
 
-Missing Keywords in Code (from paper):
+Matched Keywords in Code:
+{', '.join(matched_keywords) if matched_keywords else 'None'}
+
+Missing Keywords from Paper:
 {', '.join(missing_keywords) if missing_keywords else 'None'}
 
 -- Audited using 42
@@ -87,42 +102,43 @@ if st.button("Analyze"):
     if not uploaded_paper or not uploaded_code:
         st.warning("Please upload both paper and code.")
     else:
-        all_functions, all_imports, seeds_used = [], [], False
+        all_functions, all_imports, all_matched_keywords = [], [], set()
+        seeds_used = False
+
+        st.subheader("🔬 Per-File Analysis")
         for code_file in uploaded_code:
-            functions, imports, seed = analyze_python_code(code_file)
-            all_functions.extend(functions)
-            all_imports.extend(imports)
-            if seed:
-                seeds_used = True
+            with st.expander(f"📄 {code_file.name}"):
+                functions, imports, seed, matched_keywords = analyze_python_code(code_file, pdf_keywords)
+                all_functions.extend(functions)
+                all_imports.extend(imports)
+                all_matched_keywords.update(matched_keywords)
+                if seed:
+                    seeds_used = True
 
-        missing_keywords = [kw for kw in pdf_keywords if not any(kw.lower() in fn.lower() for fn in all_functions)]
+                st.write("📌 Functions:", ", ".join(functions) if functions else "None")
+                st.write("📦 Imports:", ", ".join(set(imports)) if imports else "None")
+                st.write("🧠 Matched Keywords:", ", ".join(matched_keywords) if matched_keywords else "None")
 
-        st.subheader("🔬 Analysis Results")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.write("📌 Functions:", ", ".join(all_functions) if all_functions else "None")
-        with col2:
-            st.write("📦 Imports:", ", ".join(set(all_imports)) if all_imports else "None")
+        missing_keywords = pdf_keywords - all_matched_keywords
+
+        st.subheader("🧪 Reproducibility Summary")
+        if seeds_used:
+            st.success("✅ Random seed setting detected.")
+        else:
+            st.warning("⚠ No random seed found. Add for consistent results.")
 
         if missing_keywords:
             st.warning(f"⚠ Missing Keywords from Paper: {', '.join(missing_keywords)}")
         else:
             st.success("✅ All key terms from paper found in code.")
 
-        st.subheader("🧪 Reproducibility Check")
-        if seeds_used:
-            st.success("Random seed setting detected.")
-        else:
-            st.warning("⚠ No random seed found. Add for consistent results.")
-
-        # Report Download
-        report = generate_report(all_functions, all_imports, seeds_used, pdf_keywords, missing_keywords)
+        report = generate_report(all_functions, all_imports, seeds_used, pdf_keywords, all_matched_keywords)
         st.download_button("📄 Download Audit Report", report, file_name="42_audit_report.txt")
 
 with st.expander("ℹ️ Instructions"):
     st.markdown("""
     1. Upload your paper (PDF) and code (.py).
     2. Click "Analyze" to run reproducibility checks.
-    3. Download your audit report.
+    3. View results per file and download your audit report.
     4. For a full expert audit, [submit your repo here](#).
     """)
