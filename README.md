@@ -1,18 +1,40 @@
-# 42: ML Reproducibility Checker
-**42** is an AI-assisted reproducibility audit tool designed to assess the alignment between a research paper and its corresponding Python code. Upload your PDF and code files, and get a quick reproducibility check with a downloadable audit report.
+## 42: ML Reproducibilty Checker
 
-- **PDF + Code Analysis**: Upload a research paper and one or more `.py` files.
-- **Keyword Extraction**: Extract key ML terms from the paper (e.g., attention, optimizer, token).
-- **Code Parsing**: Detect Python functions, imports, and random seed usage using AST and regex.
-- **Cross-Validation**: Compare extracted paper keywords with function names to find missing alignment.
-- **Reproducibility Report**: Generate and download a plaintext audit of code-paper consistency.
-  
+42 is an AI-assisted reproducibility audit tool designed to quickly assess how well a research paper’s claims align with its accompanying Python code.
 
+Upload a paper (PDF) and one or more .py files, and 42 will parse both, highlight reproducibility signals, and generate a downloadable plaintext audit report.
+
+
+
+## Features
+	•	PDF + Code Analysis
+Upload a research paper (.pdf) and associated Python code files (.py).
+	•	Keyword Extraction
+Automatically identify core ML terms from the paper (e.g., attention, transformer, embedding, optimizer, token).
+	•	Code Parsing (AST + Regex)
+	•	Detect Python functions and imports.
+	•	Identify random seed usage and determinism flags.
+	•	Extract hyperparameters (learning rate, batch size, epochs, dropout).
+	•	Cross-Validation
+Compare extracted paper keywords with codebase content to spot alignment gaps.
+	•	Hyperparameter Comparison
+Highlight mismatches between values reported in the paper and those implemented in the code.
+	•	Reproducibility Report
+Generate and download a plaintext audit that summarizes keyword alignment, hyperparameters, and reproducibility practices.
+
+⸻
+
+## Installation
+
+Clone the repo and install dependencies:
+
+```
 git clone https://github.com/midnightoatmeal/42-ML_reproducibility_checker
 pip install -r requirements.txt
-streamlit run app1.py
+streamlit run app.py
+```
 
-# Sample Use Case
+## Sample Use Case
 
 You're reviewing a NeurIPS or ICLR submission. With `42`, you can:
 
@@ -27,4 +49,4 @@ You're reviewing a NeurIPS or ICLR submission. With `42`, you can:
 Try it live: https://whatis42.streamlit.app
 
 ## License
-MIT
+MIT License. See LICENSE for details.
