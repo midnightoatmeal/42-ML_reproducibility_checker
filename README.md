@@ -10,22 +10,27 @@ Machine learning research moves at an incredible pace, but reproducibility often
 Upload a paper (PDF) and one or more .py files, and 42 will parse both, highlight reproducibility signals, and generate a downloadable plaintext audit report.
 
 
-
 ## Features
-- **PDF + Code Analysis**
-Upload a research paper (.pdf) and associated Python code files (.py).
-- **Keyword Extraction**
-Automatically identify core ML terms from the paper (e.g., attention, transformer, embedding, optimizer, token).
--Code Parsing (AST + Regex)
--Detect Python functions and imports.
--Identify random seed usage and determinism flags.
--Extract hyperparameters (learning rate, batch size, epochs, dropout).
--Cross-Validation
-Compare extracted paper keywords with codebase content to spot alignment gaps.
--Hyperparameter Comparison
-Highlight mismatches between values reported in the paper and those implemented in the code.
--Reproducibility Report
-Generate and download a plaintext audit that summarizes keyword alignment, hyperparameters, and reproducibility practices.
+
+- **PDF + Code Analysis**  
+  Upload a research paper (`.pdf`) and associated Python code files (`.py`).
+
+- **Keyword Extraction**  
+  Automatically identify core ML terms from the paper (e.g., *attention, transformer, embedding, optimizer, token*).
+
+- **Code Parsing (AST + Regex)**  
+  - Detect Python functions and imports.  
+  - Identify random seed usage and determinism flags.  
+  - Extract hyperparameters (learning rate, batch size, epochs, dropout).  
+
+- **Cross-Validation**  
+  Compare extracted paper keywords with codebase content to spot alignment gaps.
+
+- **Hyperparameter Comparison**  
+  Highlight mismatches between values reported in the paper and those implemented in the code.
+
+- **Reproducibility Report**  
+  Generate and download a plaintext audit that summarizes keyword alignment, hyperparameters, and reproducibility practices.
 
 
 ## Installation
