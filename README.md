@@ -1,30 +1,63 @@
-# 42: ML Reproducibility Checker
-**42** is an AI-assisted reproducibility audit tool designed to assess the alignment between a research paper and its corresponding Python code. Upload your PDF and code files, and get a quick reproducibility check with a downloadable audit report.
+## 42: Your AI-Powered Reproducibility Auditor
+42 is a web tool designed to automate the initial audit of ML reproducibility signals.
 
-- **PDF + Code Analysis**: Upload a research paper and one or more `.py` files.
-- **Keyword Extraction**: Extract key ML terms from the paper (e.g., attention, optimizer, token).
-- **Code Parsing**: Detect Python functions, imports, and random seed usage using AST and regex.
-- **Cross-Validation**: Compare extracted paper keywords with function names to find missing alignment.
-- **Reproducibility Report**: Generate and download a plaintext audit of code-paper consistency.
-  
+The Problem
+Machine learning research moves at an incredible pace, but reproducibility often lags. It can be difficult and time-consuming to verify if the code for a given paper truly reflects the methods, parameters, and environment described in the text. This friction slows down scientific progress and makes it harder to build upon previous work.
+
+42 aims to be the first line of defense, providing a quick, automated analysis to highlight key alignment signals and potential discrepancies between a paper and its code.
+
+## Key Features
+-PDF Text Extraction: Ingests research papers in PDF format and intelligently extracts key text and concepts.
+
+-Keyword Alignment: Automatically identifies key ML terms (e.g., transformer, attention, optimizer) in the paper and verifies their presence in the Python source code.
+
+-Hyperparameter Comparison: Scans both the paper and the code for critical hyperparameters (like learning rate, batch size, epochs) and presents them in a side-by-side comparison table to instantly spot mismatches.
+
+-Random Seed Detection: Checks for the use of random seeds (torch.manual_seed, np.random.seed, etc.), a crucial practice for ensuring deterministic results.
+
+-Reproducibility Dashboard: Presents all findings in a clean, easy-to-read UI, with clear success and warning indicators.
+
+-Downloadable Reports: Generates a full text-based audit report of the analysis that you can save for your records.
+
+## How It Works
+-Upload: Provide your research paper as a .pdf file.
+
+-Add Code: Upload one or more Python .py source files associated with the paper.
+
+-Analyze: Click the "Analyze" button to run the audit.
+
+-Review: Explore the dashboard to see the keyword alignment, hyperparameter comparison, and other reproducibility signals.
+
+## Running Locally
+Clone the repository:
 
 git clone https://github.com/midnightoatmeal/42-ML_reproducibility_checker
-pip install -r requirements.txt
-streamlit run app1.py
 
-# Sample Use Case
+Create a virtual environment:
 
-You're reviewing a NeurIPS or ICLR submission. With `42`, you can:
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-1. Upload the PDF paper and its codebase.
-2. Instantly check if:
-   - Random seeds are set (for reproducibility).
-   - Key terms in the paper appear in the code.
-   - All functions and imports are clearly defined.
-3. Download an audit report summarizing the alignment.
+Install dependencies:
+(Make sure you have a requirements.txt file with the necessary libraries)
 
-## Live Demo
-Try it live: https://whatis42.streamlit.app
+```pip install -r requirements.txt```
+
+Your requirements.txt should contain:
+```
+streamlit
+PyMuPDF
+pandas
+```
+
+Run the Streamlit app:
+
+```streamlit run app.py```
+
+## Contributing
+
+Contributions are welcome! If you have ideas for new features or improvements, please open an issue to discuss it. If you'd like to contribute code, please fork the repository and submit a pull request.
 
 ## License
-MIT
+This project is licensed under the MIT License. See the LICENSE file for details.
+
