@@ -36,17 +36,19 @@ Clone the repo and install dependencies:
 ```
 git clone https://github.com/midnightoatmeal/42-ML_reproducibility_checker
 cd 42-ML_reproducibility_checker
+```
 
-# Create a virtual environment (recommended)
+# Create a virtual environment
+```
 python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+```
 
 # Install dependencies
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 # Run the Streamlit app
-streamlit run app.py
-```
+`streamlit run app.py`
 
 Your requirements.txt should contain:
 ```
