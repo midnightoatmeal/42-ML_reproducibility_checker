@@ -12,22 +12,21 @@ Upload a paper (PDF) and one or more .py files, and 42 will parse both, highligh
 
 
 ## Features
-	•	PDF + Code Analysis
+- **PDF + Code Analysis**
 Upload a research paper (.pdf) and associated Python code files (.py).
-	•	Keyword Extraction
+- **Keyword Extraction**
 Automatically identify core ML terms from the paper (e.g., attention, transformer, embedding, optimizer, token).
-	•	Code Parsing (AST + Regex)
-	•	Detect Python functions and imports.
-	•	Identify random seed usage and determinism flags.
-	•	Extract hyperparameters (learning rate, batch size, epochs, dropout).
-	•	Cross-Validation
+-Code Parsing (AST + Regex)
+-Detect Python functions and imports.
+-Identify random seed usage and determinism flags.
+-Extract hyperparameters (learning rate, batch size, epochs, dropout).
+-Cross-Validation
 Compare extracted paper keywords with codebase content to spot alignment gaps.
-	•	Hyperparameter Comparison
+-Hyperparameter Comparison
 Highlight mismatches between values reported in the paper and those implemented in the code.
-	•	Reproducibility Report
+-Reproducibility Report
 Generate and download a plaintext audit that summarizes keyword alignment, hyperparameters, and reproducibility practices.
 
-⸻
 
 ## Installation
 
