@@ -1,6 +1,3 @@
-Mvp of 42
-
-
 import streamlit as st
 import fitz  # PyMuPDF for PDF processing
 import ast
