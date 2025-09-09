@@ -28,10 +28,7 @@ The application's backend is a Python pipeline that:
 
 To run the application locally, follow these steps:
 
-1.  **Clone the repository:**
-
-## Installation
-
+# Clone the repository:
 Clone the repo and install dependencies:
 
 ```
