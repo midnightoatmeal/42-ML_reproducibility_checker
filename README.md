@@ -1,4 +1,4 @@
-## 42: Your AI-Powered Reproducibility Auditor
+## 42: ML AI-Powered Reproducibility Auditor
 
 42 is an AI-assisted reproducibility audit tool designed to quickly assess how well a research paper's claims align with its accompanying Python code.
 
