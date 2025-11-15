@@ -2,6 +2,7 @@
 
 https://whatis42.streamlit.app
 
+There's a huggingface Space too: https://huggingface.co/spaces/midnightoatmeal/42-ML_reproducibility_checker
 
 **42** is a Streamlit application designed to automate the critical but often tedious process of verifying the reproducibility of machine learning research papers. By analyzing a paper's text and its corresponding code repository, the tool flags inconsistencies and missing information, providing a rapid first-pass check for researchers, reviewers, and engineers.
 
